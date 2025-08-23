@@ -605,8 +605,8 @@
     document.getElementById("year").textContent = new Date().getFullYear();
    </script>
     <script>
-    // Contact form handler - Sends form data to AWS Lambda
-    const LAMBDA_URL = 'YOUR_LAMBDA_FUNCTION_URL_HERE'; // Replace with your Function URL
+    
+    const LAMBDA_URL = 'https://s2ayzvjhm54duk2w7kggtshjjy0bogml.lambda-url.eu-north-1.on.aws/'; 
     
     document.addEventListener('DOMContentLoaded', function() {
         const form = document.querySelector('.contact-form-container');
@@ -617,12 +617,11 @@
             const submitBtn = form.querySelector('.contact-submit-btn');
             const messageDiv = document.getElementById('form-message');
     
-            // Show loading state
             submitBtn.textContent = 'Sending...';
             submitBtn.disabled = true;
             messageDiv.style.display = 'none';
     
-            // Get form data
+           
             const formData = {
                 name: form.name.value,
                 email: form.email.value,

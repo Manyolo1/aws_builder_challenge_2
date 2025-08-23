@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>manyolo's</title>
+    <meta name="description" content="a fun little about me for the aws_builder_challenge">
+    <meta name="author" content="Manya Saini">
+    
+    <meta property="og:title" content="manyolo's">
+    <meta property="og:description" content="a fun little about me for the aws_builder_challenge">
+    <meta property="og:type" content="website">
+    
+    <style>
+      
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            
+            --background: hsl(45, 25%, 95%);
+            --foreground: hsl(25, 20%, 15%);
+            --card: hsl(45, 30%, 98%);
+            --primary: hsl(45, 95%, 55%);
+            --primary-foreground: hsl(25, 30%, 10%);
+            --secondary: hsl(45, 15%, 88%);
+            --accent: hsl(35, 85%, 60%);
+            --accent-foreground: hsl(25, 30%, 10%);
+            --muted: hsl(45, 20%, 90%);
+            --muted-foreground: hsl(25, 15%, 45%);
+            --border: hsl(45, 20%, 85%);
+            --panel-shadow: hsl(25, 30%, 10%);
+            --bubble: hsl(0, 0%, 100%);
+            --bubble-foreground: hsl(25, 20%, 15%);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--foreground);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(var(--background), 0.9);
+            backdrop-filter: blur(8px);
+            border-bottom: 2px solid var(--foreground);
+            z-index: 50;
+            padding: 1rem 0;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+       
+        .btn {
+            background: var(--primary);
+            color: var(--primary-foreground);
+            border: 2px solid var(--foreground);
+            padding: 0.5rem 1.5rem;
+            font-weight: bold;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 3px 3px 0px var(--foreground);
+            transition: all 0.2s ease;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            box-shadow: 1px 1px 0px var(--foreground);
+            transform: translate(2px, 2px);
+        }
+
+        .btn-full {
+            width: 100%;
+            text-align: center;
+            background: var(--primary);
+            color: var(--primary-foreground);
+            font-size: 1.125rem;
+            padding: 0.75rem 1.5rem;
+        }
+
+        /* Comic Panel Styles */
+        .comic-panel {
+            background: var(--card);
+            border: 4px solid var(--foreground);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 6px 6px 0px var(--panel-shadow);
+            position: relative;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .comic-panel:hover {
+            transform: scale(1.02) rotate(1deg);
+        }
+
+        .speech-bubble {
+            background: var(--bubble);
+            color: var(--bubble-foreground);
+            border: 2px solid var(--foreground);
+            border-radius: 1rem;
+            padding: 1rem;
+            position: relative;
+            box-shadow: 3px 3px 0px var(--panel-shadow);
+            margin: 1rem 0;
+        }
+
+        .speech-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 30px;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 15px solid var(--bubble);
+        }
+
+        .speech-bubble::before {
+            content: '';
+            position: absolute;
+            bottom: -18px;
+            left: 28px;
+            width: 0;
+            height: 0;
+            border-left: 17px solid transparent;
+            border-right: 17px solid transparent;
+            border-top: 17px solid var(--foreground);
+        }
+
+        /* Typography */
+        .comic-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-shadow: 3px 3px 0px var(--primary);
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .comic-subtitle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent);
+            text-shadow: 2px 2px 0px var(--foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .text-muted {
+            color: var(--muted-foreground);
+        }
+
+        /* Layout */
+        .main {
+            padding-top: 6rem;
+            padding-bottom: 4rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-cols-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .grid-cols-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-16 > * + * {
+            margin-top: 4rem;
+        }
+
+        .max-w-4xl {
+            max-width: 56rem;
+            margin: 0 auto;
+        }
+
+        .max-w-md {
+            max-width: 28rem;
+            margin: 0 auto;
+        }
+
+        /* Images */
+        .comic-image {
+            width: 100%;
+            height: 20rem;
+            object-fit: cover;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Forms */
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--foreground);
+            border-radius: 0.5rem;
+            background: var(--background);
+            color: var(--foreground);
+            font-size: 1rem;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--foreground);
+            border-radius: 0.5rem;
+            background: var(--background);
+            color: var(--foreground);
+            font-size: 1rem;
+            resize: none;
+            min-height: 6rem;
+        }
+
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Badge styles */
+        .badge {
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .badge-accent {
+            background: rgba(var(--accent), 0.2);
+            border: 2px solid var(--accent);
+        }
+
+        .badge-primary {
+            background: rgba(var(--primary), 0.2);
+            border: 2px solid var(--primary);
+        }
+
+        .role-card {
+            background: rgba(var(--primary), 0.1);
+            border-radius: 0.5rem;
+            padding: 1rem;
+        }
+
+        .role-card-accent {
+            background: rgba(var(--accent), 0.1);
+        }
+
+        .role-card-secondary {
+            background: rgba(var(--secondary), 0.5);
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 2px solid var(--foreground);
+            background: rgba(var(--secondary), 0.3);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .panel {
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Hide elements initially */
+        .hidden {
+            display: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid-cols-2,
+            .grid-cols-3 {
+                grid-template-columns: 1fr;
+            }
+            
+            .comic-title {
+                font-size: 2rem;
+            }
+            
+            .comic-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">manyolo's</h1>
+                <button onclick="scrollToContact()" class="btn">
+                    Say hello :)
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="animate-float">
+                    <h1 class="comic-title">
+                       "Welcome to Manyolo’s Oddly Organized Chaos"
+                    </h1>
+                    <p style="font-size: 1.125rem; margin-bottom: 2rem; max-width: 48rem; margin-left: auto; margin-right: auto;" class="text-muted">
+                        Part-time philosopher, full-time coder, coffee-fueled gym rat with a camera sidekick.
+                    </p>
+                </div>
+                
+                <div id="panel-0" class="comic-panel max-w-4xl panel">
+                    <img src="top4.JPG" alt="Comic illustration of designer at work" class="comic-image">
+                    <div class="speech-bubble">
+                        <p style="font-size: 1.125rem; font-weight: 600;">
+                           "This page is my life in panels: plans, routines, and thoughts… until life hits ‘shuffle’ and I capture the chaos."
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Comic Strip Panels -->
+            <section class="space-y-16">
+                
+                <!-- Panel 1: The Beginning -->
+                <div id="panel-1" class="grid grid-cols-2 items-center panel hidden">
+    <div class="comic-panel">
+        <div class="badge badge-accent">
+            <h3 class="comic-subtitle" style="color: var(--accent);">☕ Deep Brews, Deep Thoughts</h3>
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Why coffee & philosophy?</h2>
+        <div class="speech-bubble">
+            <p>“Caffeine makes me move fast. Philosophy makes me think slow. Life… does its thing anyway.”</p>
+        </div>
+        <p class="text-muted" style="margin-top: 1rem;">
+           I read philosophy because if nothing is certain, I might as well choose how to see it, and calmly accept that both my coffee and my problems will eventually cool down.  
+        </p>
+    </div>
+    <div class="comic-panel">
+        <img src="coffee.JPG" alt="Coffee and books illustration" class="comic-image">
+    </div>
+</div>
+
+<!-- Panel 2: coding-->
+               <div id="panel-2" class="grid grid-cols-2 items-center panel hidden">
+    <div class="comic-panel" style="order: 2;">
+        <img src="code1.JPG" alt="Coding comic illustration" class="comic-image">
+    </div>
+    <div class="comic-panel" style="order: 1;">
+        <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Coding = Debugging Reality</h2>
+        <div class="speech-bubble">
+            <p>"When the code works, I am a hero. When it breaks… I meditate on the fragility of existence."</p>
+        </div>
+        <p class="text-muted" style="margin-top: 1rem;">
+            Every bug is a lesson in humility, every successful run a brief taste of digital immortality.
+        </p>
+    </div>
+</div>
+
+
+
+                <!-- Panel 3: The Transformation -->
+                <div id="panel-3" class="grid grid-cols-2 items-center panel hidden">
+    <div class="comic-panel">
+        <div class="badge badge-primary">
+            <h3 class="comic-subtitle" style="color: var(--primary);">🏋️ Iron Philosophy</h3>
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: bold; margin-bottom: 1rem;">Lifting more than weights</h2>
+        <div class="speech-bubble">
+            <p>"Squats build character. Deadlifts build patience. Both hurt equally."</p>
+        </div>
+        <p class="text-muted" style="margin-top: 1rem;">
+            The gym isn’t just about strength , it’s my way of practicing discipline, resilience, 
+            and realizing that the heaviest thing I lift might actually be my own expectations.
+        </p>
+    </div>
+    <div class="comic-panel">
+        <img src="gym1.JPG" alt="Gym comic illustration" class="comic-image">
+    </div>
+</div>
+
+
+                <!-- Panel 4: Current State -->
+              <!-- Panel 4: Current State -->
+<div id="panel-4" class="comic-panel text-center max-w-4xl panel hidden">
+    <h2 style="font-size: 1.875rem; font-weight: bold; margin-bottom: 1.5rem;">📸 Freezing Time</h2>
+
+    <!-- 3 images side by side -->
+    <div class="grid grid-cols-3" style="gap: 1rem; margin-bottom: 1.5rem;">
+        <img src="light.JPG" alt="Photo 1" class="comic-image">
+        <img src="fleet.JPG" alt="Photo 2" class="comic-image">
+        <img src="perspective.JPG" alt="Photo 3" class="comic-image">
+    </div>
+
+    <!-- Role cards / text -->
+    <div class="grid grid-cols-3" style="gap: 1.5rem; margin-bottom: 1.5rem;">
+        <div class="role-card">
+            <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">Light</h3>
+            <p style="font-size: 0.875rem;" class="text-muted">
+                I chase the perfect lighting… often at the wrong time of day.
+            </p>
+        </div>
+        <div class="role-card role-card-accent">
+            <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">Moments</h3>
+            <p style="font-size: 0.875rem;" class="text-muted">
+                I love freezing fleeting seconds and turning them into stories.
+            </p>
+        </div>
+        <div class="role-card role-card-secondary">
+            <h3 style="font-weight: bold; font-size: 1.125rem; margin-bottom: 0.5rem;">Perspective</h3>
+            <p style="font-size: 0.875rem;" class="text-muted">
+                Photography reminds me: it’s all about how you frame it.
+            </p>
+        </div>
+    </div>
+
+    <div class="speech-bubble">
+        <p style="font-size: 1.125rem;">
+           "My lens is my time-out, one snapshot to make chaos look artistic."
+        </p>
+    </div>
+</div>
+
+
+
+
+            <!-- Contact Section -->
+            <section id="contact" class="hidden" style="margin-top: 6rem;">
+                <div class="text-center" style="margin-bottom: 3rem;">
+                    <h2 class="comic-title" style="font-size: 1.875rem;">Think you're more organised chaotic?</h2>
+                    <p style="font-size: 1.125rem;" class="text-muted">
+                        Fine, Let's plot something absurdly brilliant.
+                    </p>
+                </div>
+                
+                <div class="comic-panel max-w-md">
+                    <div class="text-center" style="margin-bottom: 1.5rem;">
+                        <h3 class="comic-subtitle">vibe along.</h3>
+                        <p class="text-muted">
+                             Whether you’ve got a plan, a problem, or a philosophical paradox, I'm listening.
+                        </p>
+                    </div>
+                    
+                    <form onsubmit="handleSubmit(event)" class="space-y-4">
+                        <div>
+                            <input type="text" name="name" placeholder="Your name" required class="form-input">
+                        </div>
+                        
+                        <div>
+                            <input type="email" name="email" placeholder="your.email@example.com" required class="form-input">
+                        </div>
+                        
+                        <div>
+                            <textarea name="message" placeholder="Now shoot..." required rows="4" class="form-textarea"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-full">
+                            Send Message! 🚀
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+           <p class="text-muted">
+    © <span id="year"></span> Manya Saini ✱ Created with ❤️ on AWS ✱ #cloud-launch-challenge-1 
+           </p>
+
+        </div>
+    </footer>
+
+    <script>
+        // Animate panels in sequence
+        let visiblePanels = [];
+        const intervals = [0, 600, 1200, 1800, 2400];
+        
+        intervals.forEach((delay, index) => {
+            setTimeout(() => {
+                const panel = document.getElementById(`panel-${index}`);
+                if (panel) {
+                    panel.classList.remove('hidden');
+                    visiblePanels.push(index);
+                }
+            }, delay);
+        });
+
+        // Scroll to contact function
+        function scrollToContact() {
+            const contactSection = document.getElementById('contact');
+            contactSection.classList.remove('hidden');
+            setTimeout(() => {
+                contactSection.scrollIntoView({ 
+                    behavior: 'smooth' 
+                });
+            }, 100);
+        }
+
+        // Handle form submission
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Message sent! 🎉\nThanks for reaching out! I\'ll get back to you soon.');
+            event.target.reset();
+        }
+    </script>
+     <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+   </script>
+</body>
+</html>

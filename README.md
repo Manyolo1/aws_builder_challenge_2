@@ -3,6 +3,11 @@
 
 This week was all about **getting hands-on with different AWS services** - starting small, experimenting with the Free Tier, and layering security, scalability, and automation along the way. Step by step, I learned how these services connect, how to avoid rookie mistakes , and how to build something lightweight yet professional.
 
+#### 🎯  Here's the website deployed using AWS Amplify : https://main.dptsxffn4s6jf.amplifyapp.com/
+
+#### 🎯  Here's the AWS Builder Article : https://builder.aws.com/content/31hXlqsngOCrdv5ThSQUdFOcJ7D/because-portfolios-are-too-mainstream-architecting-not-a-portfolio-on-aws-at-the-aws-builder-challenge
+
+ 
 ## Day 1 – Setting Up the AWS Free Tier Account
 
 **What I Did:**
@@ -82,7 +87,12 @@ Security-first design clicked here. Realizing that S3 is private by default taug
 - Decided not to create a “standard portfolio” (too heavy, too common)
     
 - Focused on a theme that reflects **discipline + chaos**—my philosophy
-    
+<img src="main 02.21.43.png" width="800"/>
+<img src="1.png" width="800"/>
+<img src="contact.png" width="800"/>
+
+
+
 
 **The Page’s Philosophy:**  
 Life works like code: structure helps, but chaos is inevitable. My site embraces this balance.
@@ -200,3 +210,12 @@ The AWS Builder Challenge wasn’t about spinning up services, it was about buil
 Security, budget, creativity, and discipline, all mattered equally.  AWS Free Tier is surprisingly generous when you know how to combine services smartly.
 And through it, I didn’t just create a website.  
 I created **a site that tells my story while living entirely on the Free Tier.**
+
+
+Onto the next challenge !
+
+Cheers. 
+Manyolo. :)
+
+
+

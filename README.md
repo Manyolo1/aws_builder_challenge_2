@@ -1,5 +1,5 @@
 # Because Portfolios Are Too Mainstream: Architecting ‘Not a Portfolio’ on AWS at the AWS Builder Challenge
-
+<img src="header_light.png" width="900"/>
 
 This week was all about **getting hands-on with different AWS services** - starting small, experimenting with the Free Tier, and layering security, scalability, and automation along the way. Step by step, I learned how these services connect, how to avoid rookie mistakes , and how to build something lightweight yet professional.
 
